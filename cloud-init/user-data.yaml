@@ -1,0 +1,5 @@
+#cloud-config
+# Use as user-data for cloud VMs (GCP/AWS/Azure) to provision the devbox.
+package_update: true
+runcmd:
+  - [ bash, -c, "curl -fsSL https://raw.githubusercontent.com/cognis-digital/cognis-devbox/main/provision/install-all.sh | bash" ]
