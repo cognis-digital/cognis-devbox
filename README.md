@@ -25,6 +25,28 @@ bash provision/install-all.sh            # or use cloud-init/user-data.yaml
 
 Just want the installer menu instead of a whole image? See **[omni-install](https://github.com/cognis-digital/omni-install)**.
 
+## Usage — step by step
+
+1. **Get the repo** — clone it and review the toolset before building:
+   ```bash
+   git clone https://github.com/cognis-digital/cognis-devbox && cd cognis-devbox
+   ```
+   See [`MANIFEST.md`](MANIFEST.md) for the full preinstalled toolset.
+2. **Build the image** (KVM/QEMU qcow2) with Packer:
+   ```bash
+   packer init . && packer build .     # -> output-devbox/cognis-devbox.qcow2
+   ```
+3. **Boot it** — run the qcow2 locally, or bring it up via Vagrant:
+   ```bash
+   bash scripts/run-qemu.sh            # KVM/QEMU
+   vagrant up                          # libvirt or VirtualBox
+   ```
+4. **Or provision an existing box / cloud VM** instead of building an image:
+   ```bash
+   bash provision/install-all.sh       # or use cloud-init/user-data.yaml
+   ```
+5. **Use in CI / cloud** — point `cloud-init`'s `user-data.yaml` at a fresh VM so every runner boots the same polyglot environment. Just want the installer menu? See [omni-install](https://github.com/cognis-digital/omni-install).
+
 ## How it fits
 
 ```mermaid
